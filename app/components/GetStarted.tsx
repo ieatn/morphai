@@ -8,7 +8,7 @@ export default function GetStarted() {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
   
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setIsSubmitting(true);
@@ -20,11 +20,28 @@ export default function GetStarted() {
       return;
     }
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Something went wrong');
+      }
+      
       setIsSuccess(true);
-    }, 1500);
+      setEmail('');
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to subscribe');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   
   return (

@@ -32,7 +32,19 @@ export default function Header() {
             </Link>
           </nav>
           
-          <div className="hidden md:flex md:items-center">
+          <div className="hidden md:flex md:items-center md:space-x-4">
+            <Link
+              href="/login"
+              className="text-sm font-medium text-foreground/80 hover:text-foreground px-2"
+            >
+              Log in
+            </Link>
+            <Link
+              href="/signup"
+              className="rounded-full bg-foreground/20 px-4 py-2 text-sm font-medium text-foreground hover:bg-foreground/30 transition-colors"
+            >
+              Sign up
+            </Link>
             <Link
               href="#get-started"
               className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90 transition-opacity"
@@ -77,13 +89,29 @@ export default function Header() {
               <Link href="#faq" className="text-sm font-medium text-foreground/80 hover:text-foreground" onClick={() => setIsMenuOpen(false)}>
                 FAQ
               </Link>
-              <Link
-                href="#get-started"
-                className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90 transition-opacity inline-block w-fit"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Get Started
-              </Link>
+              <div className="flex flex-col space-y-2 pt-2 border-t border-foreground/10">
+                <Link
+                  href="/login"
+                  className="text-sm font-medium text-foreground/80 hover:text-foreground"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Log in
+                </Link>
+                <Link
+                  href="/signup"
+                  className="rounded-full bg-foreground/20 px-4 py-2 text-sm font-medium text-foreground hover:bg-foreground/30 transition-colors inline-block w-fit"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Sign up
+                </Link>
+                <Link
+                  href="#get-started"
+                  className="rounded-full bg-foreground px-4 py-2 text-sm font-medium text-background hover:opacity-90 transition-opacity inline-block w-fit"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Get Started
+                </Link>
+              </div>
             </nav>
           </div>
         </div>
